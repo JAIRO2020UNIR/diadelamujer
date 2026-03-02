@@ -1,26 +1,49 @@
-<!-- ===== FLECHA DESLIZAR HACIA ABAJO ===== -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feliz Día de la Mujer</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+<!-- ===== FLECHA DESLIZAR HACIA ABAJO RESPONSIVE DEFINITIVA===== -->
 
 <style>
 .flecha-scroll {
     position: fixed;
-    bottom: 25px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 90px;
+    font-size: 38px;
     color: #b3005e;
     cursor: pointer;
     animation: flotar 1.5s infinite;
-    z-index: 999;
+    z-index: 9999; /* 🔥 Más alto */
+    background: rgba(255,255,255,0.6);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
 }
 
+/* Animación */
 @keyframes flotar {
     0% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 10px); }
+    50% { transform: translate(-50%, 8px); }
     100% { transform: translate(-50%, 0); }
 }
 
-.flecha-scroll:hover {
-    color: #ff4d6d;
+/* Solo mostrar en móvil */
+@media (min-width: 769px){
+    .flecha-scroll{
+        display: none;
+    }
 }
 </style>
 
@@ -30,11 +53,503 @@
 
 <script>
 function scrollAbajo() {
-    window.scrollBy({
-        top: window.innerHeight,
+    window.scrollTo({
+        top: document.body.scrollHeight,
         behavior: "smooth"
     });
 }
 </script>
 
 <!-- ===== FIN FLECHA ===== -->
+
+
+
+<!-- ===== SISTEMA DE MÚSICA ALEATORIA CONTINUA ===== -->
+<audio id="musica"></audio>
+
+<script>
+const canciones = [
+    "COLOR_ESPERANZA.mp3",
+    "CREO_EN_MI.mp3",
+    "el_sol_no_regresa.mp3",
+    "FLOWER.mp3",
+    "la_playa.mp3",
+    "mujeres.mp3",
+    "ROSAS.mp3"
+];
+
+const audio = document.getElementById("musica");
+let ultimaCancion = -1;
+
+function obtenerIndiceAleatorio() {
+    let nuevoIndice;
+
+    do {
+        nuevoIndice = Math.floor(Math.random() * canciones.length);
+    } while (nuevoIndice === ultimaCancion);
+
+    ultimaCancion = nuevoIndice;
+    return nuevoIndice;
+}
+
+function reproducirAleatoria() {
+    const indice = obtenerIndiceAleatorio();
+    audio.src = canciones[indice];
+    audio.play();
+}
+
+// Cuando termine una canción → reproduce otra aleatoria
+audio.addEventListener("ended", reproducirAleatoria);
+
+// Se activa con el botón
+function iniciarExperiencia() {
+    reproducirAleatoria();
+}
+</script>
+
+<!-- ===== FIN BLOQUE ===== -->
+
+
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background: linear-gradient(-45deg, #f677b7,#ffffff, #fbc2eb,#fac994, #d5aef9,#ffffff,#bacbfc,#ffffff);
+    background-size: 400% 400%;
+    animation: fondoDinamico 15s ease infinite;
+    overflow-x:hidden;
+}
+
+@keyframes fondoDinamico{
+    0%{
+        background-position: 0% 50%;
+    }
+    25%{
+        background-position: 50% 100%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    75%{
+        background-position: 50% 0%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+
+
+
+/* 🎬 PANTALLA CINEMATOGRÁFICA */
+.intro{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:9999;
+    animation: fadeOut 3s ease forwards;
+    animation-delay:3s;
+}
+
+@keyframes fadeOut{
+    to{ opacity:0; visibility:hidden; }
+}
+
+.intro h1{
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    letter-spacing:3px;
+    animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{ opacity:0; transform:translateY(20px);}
+    to{ opacity:1; transform:translateY(0);}
+}
+
+/* 🌸 FLORES */
+.flor{
+    position: fixed;
+    top: -50px;
+    animation: caer linear infinite;
+    pointer-events: none;
+}
+
+@keyframes caer{
+    0%{
+        transform: translateY(-10vh) rotate(0deg);
+    }
+    100%{
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+
+@keyframes caer{
+    to{
+        transform: translateY(110vh) rotate(360deg);
+    }
+}
+
+/* ✨ CARD GLASS */
+.card-glass{
+    background: rgba(255,255,255,0.25);
+    backdrop-filter: blur(18px);
+    border-radius: 25px;
+    padding: 20px;
+    box-shadow: 0px 15px 40px rgba(0,0,0,0.2);
+    animation: aparecer 2s ease;
+}
+
+@keyframes aparecer{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-family:'Playfair Display', Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size:5rem;
+    color:#c1066a;
+}
+
+.mensaje{
+    font-size:1.3rem;
+    margin-top:20px;
+}
+
+.btn-custom{
+    background:#ec1a8a;
+    color:white;
+    border-radius:30px;
+    padding:12px 30px;
+    transition:0.3s;
+}
+
+.btn-custom:hover{
+    background:#b3005e;
+    transform:scale(1.05);
+}
+
+.carousel img{
+    border-radius:20px;
+    height:450px;
+    object-fit:cover;
+}
+
+footer{
+    margin-top:50px;
+    padding:20px;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎬 INTRO CINEMATOGRÁFICO -->
+<div class="intro">
+    <h1>🌸 8 DE MARZO 🌸</h1>
+    <p>Celebrando la grandeza femenina</p>
+</div>
+
+<!-- 🎶 MÚSICA ELEGANTE -->
+<audio id="musica" loop>
+    <!--<source src="mujeresricardoarjona.mp3" type="audio/mp3">-->
+</audio>
+
+
+<div class="container mt-5">
+    <div class="card-glass text-center">
+        <h1>Feliz Día de la Mujer</h1>
+        <h3><p>
+            Hoy celebramos tu fuerza, tu esencia y tu capacidad de transformar el mundo.
+        </p></h3>
+        <p class="mensaje">
+            Descansa y relajate por un momento, te invitamos a la zona de masajes.
+        </p>
+        
+        <button class="btn btn-custom mt-4" onclick="mostrarMensaje(), iniciarExperiencia()">
+            ✨Descubre tu mensaje especial ✨
+        </button>
+
+        <div id="mensajeEspecial" class="mt-4 fw-bold fs-5 text-dark"></div>
+    </div>
+</div>
+
+<!-- ===== CARRUSEL ESTILO PRO ===== -->
+
+<style>
+.carousel-container {
+    max-width: 750px;
+    margin: 40px auto;
+}
+
+.carousel img{
+    max-height: 450px;
+    object-fit: contain;
+    border-radius: 20px;
+    transition: transform 0.8s ease;
+    width: auto;       
+}
+
+.carousel-item.active img{
+    transform: scale(1.05); /* zoom suave */
+     background: transparent;
+    text-align: center;
+}
+
+.carousel-inner{
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0,0,0,0.5);
+    padding: 20px;
+    border-radius: 50%;
+}
+</style>
+
+
+<div class="carousel-container">
+    <div id="carouselExample"
+         class="carousel slide"
+         data-bs-ride="carousel"
+         data-bs-interval="2500"
+         data-bs-pause="false"
+         data-bs-wrap="true"
+         >
+
+        <div class="carousel-inner">
+
+          
+            <div class="carousel-item active">
+                <img src="1.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="2.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="3.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="4.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="5.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="6.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="7.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="8.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="9.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="10.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="11.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="12.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="13.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="14.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="15.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="16.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="17.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="18.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="19.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="20.jpeg" class="d-block w-100">
+            </div>
+            <div class="carousel-item">
+                <img src="21.jpeg" class="d-block w-100">
+            </div>
+
+
+
+            <!-- Agrega aquí tus demás fotos -->
+            <!-- Solo la primera lleva "active" -->
+
+        </div>
+
+        <button class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+
+        <button class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselExample"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+
+    </div>
+</div>
+
+<!-- ===== FIN CARRUSEL ===== -->
+
+<footer>
+    Con admiración y respeto 
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+
+/* 🎶 ACTIVAR MÚSICA (requiere interacción por políticas del navegador) */
+document.body.addEventListener("click", function(){
+    document.getElementById("musica").play();
+}, { once: true });
+
+/*  MENSAJES */
+const mensajes = [
+"Eres inspiración diaria 💜",
+"Tu fortaleza cambia el mundo 🌍",
+"Eres valentía en acción ✨",
+"Eres luz en cada paso 🌸",
+"Eres historia y futuro 📖",
+"Eres resiliencia y amor ❤️",
+"Eres ejemplo de determinación 💪",
+"Eres energía imparable ⚡",
+"Eres esencia única 🌷",
+"Eres sabiduría infinita 📚",
+"Eres creatividad sin límites 🎨",
+"Eres liderazgo natural 👑",
+"Eres pasión por la vida 🔥",
+"Eres esperanza constante 🌈",
+"Eres belleza auténtica 💫",
+"Eres voz que transforma 🎤",
+"Eres cambio positivo 🌟",
+"Eres ternura y firmeza 🤍",
+"Eres inspiración eterna 🌺",
+"Eres inteligencia brillante 🧠",
+"Eres coraje infinito 🦋",
+"Eres amor incondicional 💞",
+"Eres sueños cumplidos 🌠",
+"Eres empoderamiento real 💜",
+"Eres grandeza silenciosa 🌼",
+"Eres corazón valiente 💓",
+"Eres revolución pacífica ✊",
+"Eres progreso constante 📈",
+"Eres dignidad y respeto 🌹",
+"Eres armonía perfecta 🎶",
+"Eres mujer extraordinaria 🌟",
+"Eres talento admirable 🎯",
+"Eres motivación diaria 🚀",
+"Eres ejemplo de lucha 💪",
+"Eres inspiración global 🌍",
+"Eres fuerza interior 🧘‍♀️",
+"Eres alegría contagiosa 😊",
+"Eres brillo natural ✨",
+"Eres pasión auténtica 🔥",
+"Eres símbolo de esperanza 🌸",
+"Eres valentía femenina 👠",
+"Eres constancia firme 🏔️",
+"Eres espíritu libre 🕊️",
+"Eres resiliencia pura 🌺",
+"Eres líder innata 👑",
+"Eres magia real 💫",
+"Eres equilibrio perfecto ⚖️",
+"Eres luz propia 🌞",
+"Eres protagonista de tu historia 📖",
+"Eres simplemente maravillosa 💖"
+];
+
+function mostrarMensaje(){
+
+    // 🎵 Activar música
+    const audio = document.getElementById("musica");
+
+    audio.volume = 0.8;
+
+    audio.play().then(()=>{
+        console.log("Audio iniciado correctamente");
+    }).catch(error=>{
+        console.log("Error al reproducir:", error);
+    });
+
+    // 🌸 Mostrar mensaje aleatorio
+    const random = Math.floor(Math.random()*mensajes.length);
+    const contenedor = document.getElementById("mensajeEspecial");
+
+    contenedor.style.opacity = 0;
+    contenedor.innerHTML = mensajes[random];
+
+    setTimeout(()=>{
+        contenedor.style.transition = "opacity 1.5s ease";
+        contenedor.style.opacity = 1;
+    },100);
+}
+
+
+/* 🌸 FLORES */
+function crearFlores(){
+
+    const tiposFlores = ["🌸","🌺"];
+
+    for(let i=0; i<40; i++){
+
+        let flor = document.createElement("div");
+        flor.classList.add("flor");
+
+        // Elegir flor aleatoria
+        flor.innerHTML = tiposFlores[Math.floor(Math.random()*tiposFlores.length)];
+
+        // Posición horizontal aleatoria
+        flor.style.left = Math.random()*100 + "vw";
+
+        // Duración distinta (más natural)
+        flor.style.animationDuration = (Math.random()*8+6)+"s";
+
+        // Tamaño variable
+        flor.style.fontSize = (Math.random()*25+15)+"px";
+
+        // Opacidad variable
+        flor.style.opacity = Math.random()*0.7+0.3;
+
+        document.body.appendChild(flor);
+    }
+}
+
+crearFlores();
+
+
+
+
+</script>
+
+</body>
+</html>
