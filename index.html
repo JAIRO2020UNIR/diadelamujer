@@ -231,7 +231,7 @@ h1{
     color:white;
     border-radius:30px;
     padding:12px 30px;
-    transition:0.3s;
+    transition:0.2s;
 }
 
 .btn-custom:hover{
@@ -274,7 +274,10 @@ footer{
             Hoy celebramos tu fuerza, tu esencia y tu capacidad de transformar el mundo.
         </p></h3>
         <p class="mensaje">
-            Descansa y relajate por un momento, te invitamos a la zona de masajes.
+            Descansa y relajate por un momento, te invitamos a la zona de masajes en la Playa, te avisaremos.
+        </p>
+        <p class="mensaje">
+            <b>Te pedimos que a las 4:00 Pm compartas con nosotros.</b>
         </p>
         
         <button class="btn btn-custom mt-4" onclick="mostrarMensaje(), iniciarExperiencia()">
@@ -875,6 +878,16 @@ footer{
         </button>
     </div>
             </div>
+              <div class="carousel-item">
+                <img src="53.jpeg" class="d-block w-100">
+                <div class="text-center mt-3">
+        ❤️ <span id="likes-53">0</span>
+        <br>
+        <button class="btn btn-sm btn-custom mt-2" onclick="darLike(53)">
+            Votar por esta imagen
+        </button>
+    </div>
+            </div>
             <!-- Agrega aquí tus demás fotos -->
             <!-- Solo la primera lleva "active" -->
 
@@ -961,8 +974,8 @@ function escucharVotos(id){
     });
 }
 
-// 🔁 Cambia 52  si agregas más fotos
-for(let i=1; i<=52; i++){
+// 🔁 Cambia 53  si agregas más fotos
+for(let i=1; i<=53; i++){
     escucharVotos(i);
 }
 
